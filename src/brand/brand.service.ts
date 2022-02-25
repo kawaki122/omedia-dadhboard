@@ -15,8 +15,12 @@ export class BrandService {
         return this.brandModel.find().exec();
     }
 
-    async addNewBrand(brand: BrandDto){
-        return await this.brandModel.create({title: brand.title, img: brand.img});
+    addNewBrand(brand: BrandDto){
+        if(brand.brandId) {
+            return this.brandModel.findByIdAndUpdate(brand.brandId, {title: brand.title, img: brand.img}, {new: true});
+        } else {
+            return this.brandModel.create({title: brand.title, img: brand.img});
+        }
     }
 
     removeBrand(brandId: string){
