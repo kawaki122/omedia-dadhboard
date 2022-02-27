@@ -11,19 +11,36 @@ export class CampaignService {
         private readonly campaignModel: Model<CampaignDocument>
     ) { }
 
-    getAllCities(){
-        return this.campaignModel.find().exec();
+    getAllCampaigns() {
+        return this.campaignModel.find().populate('brand').exec();
     }
 
-    addNewCampaign(campaign: CampaignDto){
-        if(campaign.campaignId) {
-            return this.campaignModel.findByIdAndUpdate(campaign.campaignId, {title: campaign.title}, {new: true});
+    async addNewCampaign(campaign: CampaignDto) {
+        if (campaign.campaignId) {
+            return this.campaignModel.findByIdAndUpdate(
+                campaign.campaignId,
+                {
+                    title: campaign.title,
+                    from: campaign.from,
+                    to: campaign.to,
+                    status: campaign.status,
+                    brand: campaign.brand
+                },
+                { new: true }
+            ).populate('brand');
         } else {
-            return this.campaignModel.create({title: campaign.title});
+            const campn = await this.campaignModel.create({
+                title: campaign.title,
+                from: campaign.from,
+                to: campaign.to,
+                status: campaign.status,
+                brand: campaign.brand
+            })
+            return this.campaignModel.findById(campn._id).populate('brand');
         }
     }
 
-    removeCampaign(campaignId: string){
+    removeCampaign(campaignId: string) {
         return this.campaignModel.findByIdAndRemove(campaignId)
     }
 }

@@ -12,8 +12,16 @@ export class UploadController {
 
     @Get(':name')
     getFile(@Param('name') name, @Res() res: Response) {
-      const file = createReadStream(join(process.cwd(), `./uploads/${name}`));
-      file.pipe(res);
+        try {
+            if(name) {
+                const file = createReadStream(join(process.cwd(), `./uploads/${name}`));
+                file.pipe(res);
+            } else {
+                return ''
+            }
+        } catch (e) {
+            return ''
+        }
     }
 
     @Post()

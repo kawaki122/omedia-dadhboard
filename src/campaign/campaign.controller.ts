@@ -10,7 +10,7 @@ export class CampaignController {
 
     @Get()
     getAll(){
-        return this.campaignService.getAllCities();
+        return this.campaignService.getAllCampaigns();
     }
 
     @Delete()
