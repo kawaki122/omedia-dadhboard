@@ -9,10 +9,10 @@ export class Campaign {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true, default: Date.now() })
+  @Prop({ required: true })
   from: Date;
 
-  @Prop({ required: true, default: Date.now() })
+  @Prop({ required: true })
   to: Date;
 
   @Prop({ required: true })

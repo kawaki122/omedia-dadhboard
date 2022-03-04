@@ -8,5 +8,6 @@ import { City, CitySchema } from './schemas/city.schema';
   controllers: [CityController],
   providers: [CityService],
   imports: [MongooseModule.forFeature([{name: City.name, schema: CitySchema}])],
+  exports: [CityService]
 })
 export class CityModule {}

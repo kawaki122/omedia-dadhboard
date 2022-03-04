@@ -7,3 +7,6 @@ export class CampaignDto {
     brand: string;
  }
  
+ export class CampaignIdDto {
+    id: string;
+ }
