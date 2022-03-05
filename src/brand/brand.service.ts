@@ -6,24 +6,28 @@ import { Brand, BrandDocument } from './schemas/brand.schema';
 
 @Injectable()
 export class BrandService {
-    constructor(
-        @InjectModel(Brand.name)
-        private readonly brandModel: Model<BrandDocument>
-    ) { }
+  constructor(
+    @InjectModel(Brand.name)
+    private readonly brandModel: Model<BrandDocument>,
+  ) {}
 
-    getAllBrands(){
-        return this.brandModel.find().exec();
-    }
+  getAllBrands() {
+    return this.brandModel.find().exec();
+  }
 
-    addNewBrand(brand: BrandDto){
-        if(brand.brandId) {
-            return this.brandModel.findByIdAndUpdate(brand.brandId, {title: brand.title, img: brand.img}, {new: true});
-        } else {
-            return this.brandModel.create({title: brand.title, img: brand.img});
-        }
+  addNewBrand(brand: BrandDto) {
+    if (brand.brandId) {
+      return this.brandModel.findByIdAndUpdate(
+        brand.brandId,
+        { title: brand.title, img: brand.img, client: brand.client },
+        { new: true },
+      );
+    } else {
+      return this.brandModel.create({ title: brand.title, client: brand.client, img: brand.img });
     }
+  }
 
-    removeBrand(brandId: string){
-        return this.brandModel.findByIdAndRemove(brandId)
-    }
+  removeBrand(brandId: string) {
+    return this.brandModel.findByIdAndRemove(brandId);
+  }
 }

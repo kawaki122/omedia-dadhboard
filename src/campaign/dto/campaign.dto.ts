@@ -5,6 +5,7 @@ export class CampaignDto {
     to: Date;
     status: string;
     brand: string;
+    cities: string[];
  }
  
  export class CampaignIdDto {

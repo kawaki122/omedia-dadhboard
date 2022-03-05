@@ -21,7 +21,7 @@ export class CampaignService {
     }
 
     async getCompleteCampaign(id) {
-        const campaign = await this.campaignModel.findById(id).populate('brand').exec();
+        const campaign = await this.campaignModel.findById(id).populate({path:'brand', populate: {path: 'client'}}).exec();
         const locations = await this.locationModel.find({ campaign: id }).exec();
 
         return { campaign, locations };
@@ -36,7 +36,8 @@ export class CampaignService {
                     from: campaign.from,
                     to: campaign.to,
                     status: campaign.status,
-                    brand: campaign.brand
+                    brand: campaign.brand,
+                    cities: campaign.cities,
                 },
                 { new: true }
             ).populate('brand');
@@ -46,7 +47,8 @@ export class CampaignService {
                 from: campaign.from,
                 to: campaign.to,
                 status: campaign.status,
-                brand: campaign.brand
+                brand: campaign.brand,
+                cities: campaign.cities,
             })
             return this.campaignModel.findById(campn._id).populate('brand');
         }
