@@ -28,6 +28,12 @@ export class Location {
   @Prop({ default: '' })
   feedBack: string;
 
+  @Prop({ default: '' })
+  size: string;
+
+  @Prop({ default: '' })
+  tflow: string;
+
   @Prop({ required: true, ref: Campaign.name })
   campaign: string;
 

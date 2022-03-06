@@ -21,7 +21,7 @@ export class CampaignService {
     }
 
     async getCompleteCampaign(id) {
-        const campaign = await this.campaignModel.findById(id).populate({path:'brand', populate: {path: 'client'}}).exec();
+        const campaign = await this.campaignModel.findById(id).populate({path:'brand', populate: {path: 'client'}}).populate('cities').exec();
         const locations = await this.locationModel.find({ campaign: id }).exec();
 
         return { campaign, locations };
