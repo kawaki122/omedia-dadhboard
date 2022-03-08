@@ -93,6 +93,7 @@ export class CampaignService {
       content: review.content,
       campaign: review.campaign,
       location: review.location,
+      createdAt: Date.now(),
     });
     return this.reviewModel.findById(result._id).exec();
   }

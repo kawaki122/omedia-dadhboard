@@ -24,7 +24,7 @@ export class Review {
   @Prop({ required: true, ref: Location.name })
   location: string;
 
-  @Prop({ required: true, default: Date.now() })
+  @Prop({ default: Date.now() })
   createdAt: Date;
 }
 
