@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Brand } from 'src/brand/schemas/brand.schema';
-import { City } from 'src/city/schemas/city.schema';
 import { Campaign } from './campaign.schema';
 import { Location } from './location.schema';
 

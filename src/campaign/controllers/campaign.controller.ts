@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Patch, Query } from '@nestjs/common';
-import { CampaignService } from './campaign.service';
-import { CampaignDto, CampaignIdDto } from './dto/campaign.dto';
-import { LocationDto } from './dto/location.dto';
-import { ReviewDto } from './dto/review.dto';
+import { CampaignService } from '../services/campaign.service';
+import { CampaignDto, CampaignIdDto } from '../dto/campaign.dto';
+import { LocationDto } from '../dto/location.dto';
+import { ReviewDto } from '../dto/review.dto';
 
 @Controller('campaign')
 export class CampaignController {
@@ -28,15 +28,5 @@ export class CampaignController {
     @Patch()
     addCampaign(@Body() body: CampaignDto) {
         return this.campaignService.addNewCampaign(body);
-    }
-
-    @Patch('location')
-    addLocation(@Body() body: LocationDto) {
-        return this.campaignService.upsertLocation(body);
-    }
-
-    @Patch('review')
-    addReview(@Body() body: ReviewDto) {
-        return this.campaignService.addReview(body);
     }
 }
