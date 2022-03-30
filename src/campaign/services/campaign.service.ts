@@ -65,4 +65,12 @@ export class CampaignService {
   removeCampaign(campaignId: string) {
     return this.campaignModel.findByIdAndRemove(campaignId);
   }
+
+  findByCity(cityId: string) {
+    return this.campaignModel.find({ cities: cityId }).exec();
+  }
+
+  findByBrand(brandId: string) {
+    return this.campaignModel.find({ brand: brandId }).exec();
+  }
 }

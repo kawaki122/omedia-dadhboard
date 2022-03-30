@@ -13,17 +13,22 @@ import { LocationService } from './services/location.service';
 @Module({
   controllers: [CampaignController, LocationController, ReviewController],
   providers: [CampaignService, ReviewService, LocationService],
-  imports: [MongooseModule.forFeature([{
-    name: Campaign.name,
-    schema: CampaignSchema,
-  },
-  {
-    name: Location.name,
-    schema: LocationSchema,
-  },
-  {
-    name: Review.name,
-    schema: ReviewSchema,
-  }])],
+  imports: [
+    MongooseModule.forFeature([
+      {
+        name: Campaign.name,
+        schema: CampaignSchema,
+      },
+      {
+        name: Location.name,
+        schema: LocationSchema,
+      },
+      {
+        name: Review.name,
+        schema: ReviewSchema,
+      },
+    ]),
+  ],
+  exports: [CampaignService],
 })
-export class CampaignModule { }
+export class CampaignModule {}
