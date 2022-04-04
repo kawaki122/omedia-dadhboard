@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
+import { SignupDto } from './dto/SignupDto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 
@@ -24,9 +25,20 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
+  @Post('signup')
+  async signup(@Body() body: SignupDto) {
+    return this.authService.signUp(body);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('user_info')
   getUserInfo(@Request() req) {
     return req.user;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('updatePassword')
+  updatePassword(@Request() req) {
+    return this.authService.updatePassword({ ...req.body, ...req.user });
   }
 }

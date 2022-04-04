@@ -5,7 +5,7 @@ import { jwtConstants } from '../dto/constant';
 
 @Injectable()
 export class AuthHelper {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor() {}
 
   hashPassword(pass: string, rounds = jwtConstants.passwordHashingRound) {
     return bcrypt.hashSync(pass, rounds);
