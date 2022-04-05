@@ -1,14 +1,14 @@
-import { Controller, Get, } from '@nestjs/common';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CommonService } from './common.service';
 
 @Controller('common')
 export class CommonController {
-    constructor(
-        private readonly commonService: CommonService
-    ) { }
+  constructor(private readonly commonService: CommonService) {}
 
-    @Get('getInitial')
-    getInitial(){
-        return this.commonService.getInitial();
-    }
+  @UseGuards(JwtAuthGuard)
+  @Get('getInitial')
+  getInitial(@Request() req) {
+    return this.commonService.getInitial(req.user);
+  }
 }

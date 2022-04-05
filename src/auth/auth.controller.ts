@@ -31,12 +31,6 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('user_info')
-  getUserInfo(@Request() req) {
-    return req.user;
-  }
-
-  @UseGuards(JwtAuthGuard)
   @Post('updatePassword')
   updatePassword(@Request() req) {
     return this.authService.updatePassword({ ...req.body, ...req.user });
