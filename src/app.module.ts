@@ -11,7 +11,9 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/omedia'),
+    MongooseModule.forRoot(
+      process.env.MONGODB_STORE_URI || 'mongodb://localhost/omedia',
+    ),
     BrandModule,
     UploadModule,
     CityModule,
