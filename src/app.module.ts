@@ -12,8 +12,7 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      // process.env.MONGODB_STORE_URI || 'mongodb://localhost/omedia',
-      'mongodb+srv://omedia:omedia@cluster0.znyo4.mongodb.net/omediadb?retryWrites=true&w=majority',
+      process.env.MONGODB_URI || 'mongodb://localhost/omedia',
     ),
     BrandModule,
     UploadModule,
